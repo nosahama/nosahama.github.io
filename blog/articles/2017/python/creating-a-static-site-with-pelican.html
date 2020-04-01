@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+      <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Creating a Static Blog/Site with Pelican</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="http://nosahama.com/blog" rel="canonical" />
+
+  <!-- Feed -->
+        <link href="http://nosahama.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Emmanuel Nosa E. Full Atom Feed" />
+          <link href="http://nosahama.com/blog/feeds/python.atom.xml" type="application/atom+xml" rel="alternate" title="Emmanuel Nosa E. Categories Atom Feed" />
+
+  <link href="http://nosahama.com/blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <link rel="shortcut icon" type="image/png" href="http://nosahama.com/blog/theme/images/favicon.png"  />
+
+
+  <!-- Code highlight color scheme -->
+      <link href="http://nosahama.com/blog/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+    <link href="http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican" rel="canonical" />
+
+        <meta name="description" content="Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and...">
+
+        <meta name="author" content="nosahama">
+
+        <meta name="tags" content="pelican">
+        <meta name="tags" content="static site generator">
+        <meta name="tags" content="github hosting">
+
+        <meta property="og:locale" content="" />
+    <meta property="og:site_name" content="Emmanuel Nosa E." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Emmanuel Nosa E." />
+    <meta property="og:description" content="View the blog." />
+    <meta property="og:url" content="http://nosahama.com/blog" />
+      <meta name="og:image" content="http://nosahama.com/blog/theme/images/post-bg.jpg">
+      <meta property="article:publisher" content="https://facebook.com/e.nosahama" />
+
+  <meta property="og:type" content="article">
+            <meta property="article:author" content="http://nosahama.com/blog/author/nosahama">
+  <meta property="og:url" content="http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican">
+  <meta property="og:title" content="Creating a Static Blog/Site with Pelican">
+  <meta property="article:published_time" content="2017-11-14 11:20:00+01:00">
+            <meta property="og:description" content="Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and...">
+
+            <meta property="og:image" content="http://nosahama.com/blog/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nosahama">
+        <meta name="twitter:title" content="Creating a Static Blog/Site with Pelican">
+        <meta name="twitter:url" content="http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican">
+
+            <meta name="twitter:image:src" content="http://nosahama.com/blog/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and...">
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="http://nosahama.com/blog" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Creating a Static Blog/Site with Pelican</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="http://nosahama.com/blog/author/nosahama">Nosahama</a>
+            | <time datetime="Tue 14 November 2017">Tue 14 November 2017</time>
+        </span>
+        <!-- TODO : Modified check -->
+
+            <div class="post-cover cover" style="background-image: url('http://nosahama.com/blog/theme/images/post-bg.jpg')">
+
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p>I had been contemplating what my first blog post would be about, as i needed to break the ice urgently, but then, i decided, why not show the few people who might or might not know about Static Site Generators how useful such negligible tools can be.</p>
+<p>Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and database setup or conventional hosting? The good thing is we can create static sites and host them for free on Github with Pelican and Github Pages. There are other static site generators for different languages and technologies, like; <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> for Ruby, <a href="https://hexo.io/" target="_blank">Hexo</a> for Javascript, but we would be focusing on <a href="https://getpelican.com/" target="_blank">Pelican</a> for Python.</p>
+<p><strong> <em>Just so you know, this whole site is built and hosted for free, using technologies discussed below.</em> </strong></p>
+<h3>So what exactly is a static site?</h3>
+<p>Most websites on the internet today comprise of various technologies both complex and feasible and mostly tend to involve a database, a server, CRUD (Create, Read, Update and Delete) operations, asynchronous tasks, et al. These kind of flexible and mutable data dependent sites are what we mostly refer to as <strong>Dynamic Sites</strong>.</p>
+<p>Static sites are less complex in the sense that most of the information on the site does not necessarily need to change frequently over time. Such sites do not have a database attached or need to perform any data intensive operations, they do not need to collect your information, they are mostly to display information. </p>
+<p>Lets say we wanted to create a blog, in a Static Site architecture, if a user needs to view a post, the server simply returns the appropriate HTML template mapped to the requested URL and renders it to the user. But in a Dynamic Site architecture, when a user tries to view a blog post, the server (database) would first be queried to return details about the specified blog post and then return the results to the client. They both have their various pros and cons which can be easily understood with a simple <a href="https://www.google.com.ng/search?ei=XuUJWtDFONKukwX2rb_ADw&q=difference+between+static+and+dynamic+website&oq=differen&gs_l=psy-ab.3.1.0i67k1l4j0l6.6695.7914.0.10405.8.8.0.0.0.0.226.1023.0j2j3.5.0....0...1.1.64.psy-ab..3.5.1021...35i39k1j0i3k1j0i131k1.0.rHo0Lwf51vw" target="_blank">Google Search</a></p>
+<h3>What are Static Site Generators?</h3>
+<p>In few words</p>
+<blockquote>
+<p>Static site generators take content written in a particular format, <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>, <a href="https://en.wikipedia.org/wiki/ReStructuredText" target="_blank">reStructuredText</a> and translates it to HTML based on certain rules given in a configuration file. </p>
+</blockquote>
+<h4>Some Benefits of Static Site Generators:</h4>
+<ul>
+<li>Cheap Scaling: Pre-rendered static files can stand the onslaught of traffic if your post makes it to the top of hackernews or reddit very cheaply. No queries are being made.</li>
+<li>Any format: You can use reStructuredText, Markdown etc. to write your posts.</li>
+<li>Host Anywhere: Static sites can be hosted easily on github pages, Amazon S3 and even dropbox.</li>
+<li>Own Everything: You have access to all your posts and all your themes. No company in the middle, just you and your content.</li>
+<li>Control: Static site generators give you a lot of control over pretty much every aspect of your site through templates and plugins, allowing you to quickly add complex functionality not found in popular web blogging platforms.</li>
+<li>Update Issues: If you are using wordpress, you have to update your software when a new version comes out; otherwise, you have a security risk. However, one can use the same version of a static blog generator indefinitely.</li>
+</ul>
+<h4>Advantages of Using Pelican:</h4>
+<p>Pelican is our chosen Static Site Generator and below are some of it's advantages:</p>
+<ul>
+<li>Plugins: Pelican has a lot of plugins, that allow you to quickly add functionality.</li>
+<li>Hackable: Extending pelican as well as altering its behaviour is simple.</li>
+<li>Themes: Pelican has a lot of themes, and you can make your own.</li>
+<li>Multi-platform: Works well on Windows, OSX and Linux. </li>
+</ul>
+<h3>Getting Started</h3>
+<p>There are some basic technologies and concepts you need to know to fully understand how this whole thing works, some of which are;</p>
+<ul>
+<li>Python, Pip, Virtualenvs</li>
+<li>Git, Bash</li>
+</ul>
+<h4>Installing Pelican</h4>
+<p>Installation is very simple. It is highly advised that you create a <a href="https://virtualenv.pypa.io/en/stable/" target="_blank">Virtual Environment</a> for your python applications, see <a href="http://nosahama.com/blog/articles/2017/python/virtual-environments-in-python" target="_blank">this post</a> for more. </p>
+<ol>
+<li>You must have a <a href="#" target="_blank">full python development setup</a>.</li>
+<li>Start your virtual environment and navigate to the folder where your site files would be stored.</li>
+<li>Install Pelican which would also install Markdown, blinker, et al.</li>
+</ol>
+<div class="highlight"><pre><span></span>$ pip install pelican
+Collecting pelican
+  Using cached pelican-3.7.1-py2.py3-none-any.whl
+Collecting markdown
+  Downloading Markdown-2.6.9.tar.gz <span class="o">(</span>271kB<span class="o">)</span>
+    <span class="m">100</span>% <span class="p">|</span>████████████████████████████████<span class="p">|</span> 276kB 336kB/s
+Collecting blinker <span class="o">(</span>from pelican<span class="o">)</span>
+Collecting unidecode <span class="o">(</span>from pelican<span class="o">)</span>
+  Downloading Unidecode-0.04.21-py2.py3-none-any.whl <span class="o">(</span>228kB<span class="o">)</span>
+    <span class="m">100</span>% <span class="p">|</span>████████████████████████████████<span class="p">|</span> 235kB 305kB/s
+.
+.
+.
+Installing collected packages: blinker, unidecode, pytz, six, feedgenerator, pygments, docutils, MarkupSafe, jinja2, python-dateutil, pelican, markdown
+Successfully installed MarkupSafe-1.0 blinker-1.4 docutils-0.14 feedgenerator-1.9 jinja2-2.10 markdown-2.6.9 pelican-3.7.1 pygments-2.2.0 python-dateutil-2.6.1 pytz-2017.3 six-1.11.0 unidecode-0.4.21
+</pre></div>
+
+
+<p>After Pelican and all it's dependencies are installed, you can then advance to starting site generation with pelican. </p>
+<h4>Basic Setup</h4>
+<p>To kickstart your development process, enter <code>pelican-quickstart</code> in your terminal with your virtual environment enabled.</p>
+<div class="highlight"><pre><span></span>$ pelican-quickstart
+Welcome to pelican-quickstart v3.5.0.
+
+This script will <span class="nb">help</span> you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+&gt; Where <span class="k">do</span> you want to create your new web site? <span class="o">[</span>.<span class="o">]</span>
+&gt; What will be the title of this web site? Site Title
+&gt; Who will be the author of this web site? Captain America
+&gt; What will be the default language of this web site? <span class="o">[</span>en<span class="o">]</span>
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span class="o">(</span>Y/n<span class="o">)</span> n
+&gt; Do you want to <span class="nb">enable</span> article pagination? <span class="o">(</span>Y/n<span class="o">)</span>
+&gt; How many articles per page <span class="k">do</span> you want? <span class="o">[</span><span class="m">10</span><span class="o">]</span> <span class="m">8</span>
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span class="o">(</span>Y/n<span class="o">)</span>
+&gt; Do you want an auto-reload <span class="p">&amp;</span> simpleHTTP script to assist with theme and site development? <span class="o">(</span>Y/n<span class="o">)</span>
+&gt; Do you want to upload your website using FTP? <span class="o">(</span>y/N<span class="o">)</span>
+&gt; Do you want to upload your website using SSH? <span class="o">(</span>y/N<span class="o">)</span>
+&gt; Do you want to upload your website using Dropbox? <span class="o">(</span>y/N<span class="o">)</span>
+&gt; Do you want to upload your website using S3? <span class="o">(</span>y/N<span class="o">)</span>
+&gt; Do you want to upload your website using Rackspace Cloud Files? <span class="o">(</span>y/N<span class="o">)</span>
+&gt; Do you want to upload your website using GitHub Pages? <span class="o">(</span>y/N<span class="o">)</span>
+Done. Your new project is available at /Users/Nosa/Projects/blog
+</pre></div>
+
+
+<p>You can simply leave certain fields blank as their default values (Uppercased values between the parentheses) would suffice. You should now have the following folder structure:</p>
+<div class="highlight"><pre><span></span>.
+├── Makefile
+├── content/
+├── develop_server.sh
+├── fabfile.py
+├── output/
+├── pelicanconf.py
+└── publishconf.py
+</pre></div>
+
+
+<p>Briefly to explain what each file/folder does/contains:</p>
+<ol>
+<li><strong>Makefile</strong>: a file that contains configurations used when running commands with <code>make</code></li>
+<li><strong>content</strong>: a folder that would contain our pages and articles writing in either Markdown or reStructuredText format. This is the folder Pelican looks into when trying to convert our files to HTML</li>
+<li><strong>develop_server.sh</strong>: a bash file used by Pelican</li>
+<li><strong>fabfile.py</strong>: a file used when automating processes through <a href="http://www.fabfile.org/", target="_blank">Fabric</a></li>
+<li><strong>output</strong>: a folder which would contain the rendered HTML files, this is the folder we are to deploy to our various hosting platforms or to Github Pages.</li>
+<li><strong>pelicanconf.py</strong>: a file that holds settings and configurations needed by Pelican during conversion.</li>
+<li><strong>publishconf.py</strong>: a file used by Pelican during publishing</li>
+</ol>
+<h4>Creating Articles</h4>
+<p>We would use Markdown to write our first entry, but you can also use reStructuredText. Change your current directory to the <code>content</code> directory and create a new file with the markdown extension (.md)</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> content
+$ sudo nano first_post.md
+</pre></div>
+
+
+<p>Enter the following</p>
+<div class="highlight"><pre><span></span>Title: My First Post
+Date: 2017-11-14 18:32
+Category: Test
+
+Thanks to Pelican
+</pre></div>
+
+
+<p>The <strong>Title</strong>, <strong>Date</strong> and <strong>Category</strong> are post metadata used to provide reusable information about the article being written, there are various other metadata used for posts like; <strong>tags</strong>, <strong>author</strong>, <strong>summary</strong>, which are sometimes specific to the <strong>Theme</strong> being used and the corresponding configuration files. Every other text beneath the metadata section is the body of the text. </p>
+<h4>Start a development server</h4>
+<p>Now run the command for starting a development server</p>
+<div class="highlight"><pre><span></span>make devserver
+</pre></div>
+
+
+<p>Browse to <a href="http://localhost:8000" target="_blank">http://localhost:8000</a> to see your newly created site.</p>
+<h4>Using Themes, Plugins and Settings</h4>
+<p>Pelican settings and choosing a theme/plugin are covered fully in the following articles:</p>
+<ol>
+<li><a href="#" target="_blank">Understanding Pelican Settings</a></li>
+<li><a href="#" target="_blank">Using Pelican Themes and Plugins</a></li>
+</ol>
+<p>I personally use the <code>atilla</code> theme from the <a href="https://github.com/getpelican/pelican-themes" target="_blank">Pelican Themes Repository</a></p>
+<h4>Writing complex articles</h4>
+<p>To fully write meaty articles, you need to know how to implement lists, headings, images, bold and italics, etc in markdown and the following <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank"><b>post</b></a> would provide all you need to get up to speed with Markdown.</p>
+<p>This <a href="http://nafiulis.me/making-a-static-blog-with-pelican.html#automation" target="_blank">blog post</a> has an awesome script for automating the creation of posts by using command line arguments to specify the Title, then the script automates the inclusion of the various necessary metadata. </p>
+<p><strong>Below is a sample script that automates the creation of a post:</strong></p>
+<p>We create a python file named <code>create_post.py</code></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">title: {title}</span>
+<span class="s2">date: {year}-{month}-{day} {hour}:{minute:02d}</span>
+<span class="s2">tags:</span>
+<span class="s2">category:</span>
+<span class="s2">slug: {slug}</span>
+<span class="s2">summary:</span>
+<span class="s2">status: draft</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">create_post</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;content/{}_{:0&gt;2}_{:0&gt;2}_{}.md&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TEMPLATE</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                                <span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                                <span class="n">month</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span>
+                                <span class="n">day</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span>
+                                <span class="n">hour</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span>
+                                <span class="n">minute</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span>
+                                <span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;File created -&gt; &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">create_post</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;No title given&quot;</span>
+</pre></div>
+
+
+<p>The script above requires a title to be passed as an argument when running the file and it then populates certain metadata based on the title and date. </p>
+<p>We can then simply create a new file:</p>
+<div class="highlight"><pre><span></span>$ python create_post.py <span class="s2">&quot;My First Pelican Site&quot;</span>
+File created -&gt; content/2014_12_13_my-first-pelican-site.md
+</pre></div>
+
+
+<p>Remember that the <code>content</code> folder holds the raw files which would then be converted to HTML by Pelican and the <code>output</code> folder contains the converted HTML files. </p>
+<h4>Hosting your new site freely on Github</h4>
+<p>GitHub is a Web-based Git version control repository hosting service. It is mostly used for computer code. It offers all of the distributed version control and source code management functionality of Git as well as adding its own features.</p>
+<p>In order to get a sitename as <code>http://username.github.io</code> one needs to <a href="https://help.github.com/articles/create-a-repo/" target="_blank">create a repository on github</a> named <code>username.github.io</code>, set it as public and empty. This is the repository where you would push the content of your <code>output</code> folder. Once your repository has been created, take note of the <code>remote url</code>. </p>
+<p>You would also need a repository to hold all the files, both the output folder and the content folder and all files involved, as a back up. Most people prefer using <a href="https://git-scm.com/docs/git-submodule" target="_blank">Git Submodule</a> since the output folder is contained in the same parent folder as the content folder, so we would need to have a git repository inside a git repository, not so complicated, but beyond the scope of this tutorial.</p>
+<p>So initialize an empty git repository in both the output folder and it's parent folder</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> output
+$ git init
+$ git remote add origin https://github.com/username/output_repo
+
+$ <span class="nb">cd</span> ..
+$ git init
+$ git remote add origin https://github.com/username/full_blog_repo
+</pre></div>
+
+
+<p>Then push the content of the output folder to the appropriate repository <code>username.github.io</code>. </p>
+<div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s2">&quot;ain&#39;t i awesome&quot;</span>
+$ git push
+</pre></div>
+
+
+<p>Remember to also add a <code>.gitignore</code> file and add <code>*.pyc</code> and also push the content of the parent folder when you please, this is more of a backup scheme. </p>
+<p>If all things go well, you should see your newly created site at <strong>http://username.github.io</strong></p>
+<h4>Custom domains</h4>
+<p>In order to get your own top level domain like I have with nosahama.com, you simply need to add a <code>CNAME</code> file with your domain in it. The CNAME file must me located inside your output directory and must only have the domain name you intend to use. My CNAME file looks like this:</p>
+<div class="highlight"><pre><span></span>nosahama.com
+</pre></div>
+
+
+<p>The CNAME file must be included when you are pushing to your github repo.</p>
+<p>Once this is done, you need to link your domain up with github, follow <a href="http://davidensinger.com/2013/03/setting-the-dns-for-github-pages-on-namecheap/" target="_blank">this post</a> to setup a personal domain with github on namecheap, but the tutorial follows principles applicable to other domain companies. </p>
+<p>Not to make this article more verbose than it already is, i've broken down other aspects of Pelican into various other articles:</p>
+<ol>
+<li><a href="#" target="_blank">Understanding Pelican Settings</a></li>
+<li><a href="#" target="_blank">Using Pelican Themes and Plugins</a></li>
+</ol>
+<p>You can read more about Pelican at their <a href="http://docs.getpelican.com/en/stable/" target="_blank">Official Documentation</a></p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Creating a Static Blog/Site with Pelican&amp;url=http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="http://nosahama.com/blog/tag/pelican">pelican</a><a href="http://nosahama.com/blog/tag/static-site-generator">static site generator</a><a href="http://nosahama.com/blog/tag/github-hosting">github hosting</a>                </aside>
+
+                <div class="clear"></div>
+
+                <aside class="post-author">
+                        <figure class="post-author-avatar">
+                            <img src="http://nosahama.com/assets/img/author/nosa.jpeg" alt="Nosahama" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="http://nosahama.com/blog/author/nosahama">Emmanuel Nosa E.</a></h4>
+                            <p class="post-author-about">Software Engineer with experience in Python, C#, JS, Mobile and Web Development, Servers and DevOps, Lifelong Learner.</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Berlin, Germany</span>
+                            <span class="post-author-website"><a href="http://nosahama.com"><i class="ic ic-link"></i> Website</a></span>
+                            <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/nosahama"><i class="ic ic-twitter"></i> Twitter</a></span>
+                            <span class="post-author-facebook"><a target="_blank" href="https://facebook.com/e.nosahama"><i class="ic ic-facebook"></i> Facebook</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+
+
+                </section>
+
+                <script type="text/javascript">
+                    var disqus = 'nosahama';
+                    var disqus_shortname = 'nosahama';
+                    var disqus_identifier = '/articles/2017/python/creating-a-static-site-with-pelican';
+                    var disqus_url = 'http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+                <section class="post-comments">
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/articles/2017/python/creating-a-static-site-with-pelican" >Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+          <span class="credits-software">Emmanuel Nosa E. &copy; 2019 <a href="https://github.com/nosahama" rel="nofollow">Nosahama</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="http://nosahama.com/blog/theme/js/script.js"></script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'nosahama';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

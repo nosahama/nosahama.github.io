@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Emmanuel Nosa E. - Python</title><link href="http://nosahama.com/blog/" rel="alternate"></link><link href="http://nosahama.com/blog/feeds/python.atom.xml" rel="self"></link><id>http://nosahama.com/blog/</id><updated>2017-11-14T11:20:00+01:00</updated><entry><title>Creating a Static Blog/Site with Pelican</title><link href="http://nosahama.com/blog/articles/2017/python/creating-a-static-site-with-pelican" rel="alternate"></link><published>2017-11-14T11:20:00+01:00</published><updated>2017-11-14T11:20:00+01:00</updated><author><name>nosahama</name></author><id>tag:nosahama.com,2017-11-14:/blog/articles/2017/python/creating-a-static-site-with-pelican</id><summary type="html">&lt;p&gt;Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and database setup or conventional hosting? The good thing is we can create static sites and host them for free on Github.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I had been contemplating what my first blog post would be about, as i needed to break the ice urgently, but then, i decided, why not show the few people who might or might not know about Static Site Generators how useful such negligible tools can be.&lt;/p&gt;
+&lt;p&gt;Ever wanted to create a personal site or blog and got discouraged by the amount of expertise needed across development, cloud and database setup or conventional hosting? The good thing is we can create static sites and host them for free on Github with Pelican and Github Pages. There are other static site generators for different languages and technologies, like; &lt;a href="https://jekyllrb.com/" target="_blank"&gt;Jekyll&lt;/a&gt; for Ruby, &lt;a href="https://hexo.io/" target="_blank"&gt;Hexo&lt;/a&gt; for Javascript, but we would be focusing on &lt;a href="https://getpelican.com/" target="_blank"&gt;Pelican&lt;/a&gt; for Python.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; &lt;em&gt;Just so you know, this whole site is built and hosted for free, using technologies discussed below.&lt;/em&gt; &lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;So what exactly is a static site?&lt;/h3&gt;
+&lt;p&gt;Most websites on the internet today comprise of various technologies both complex and feasible and mostly tend to involve a database, a server, CRUD (Create, Read, Update and Delete) operations, asynchronous tasks, et al. These kind of flexible and mutable data dependent sites are what we mostly refer to as &lt;strong&gt;Dynamic Sites&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Static sites are less complex in the sense that most of the information on the site does not necessarily need to change frequently over time. Such sites do not have a database attached or need to perform any data intensive operations, they do not need to collect your information, they are mostly to display information. &lt;/p&gt;
+&lt;p&gt;Lets say we wanted to create a blog, in a Static Site architecture, if a user needs to view a post, the server simply returns the appropriate HTML template mapped to the requested URL and renders it to the user. But in a Dynamic Site architecture, when a user tries to view a blog post, the server (database) would first be queried to return details about the specified blog post and then return the results to the client. They both have their various pros and cons which can be easily understood with a simple &lt;a href="https://www.google.com.ng/search?ei=XuUJWtDFONKukwX2rb_ADw&amp;q=difference+between+static+and+dynamic+website&amp;oq=differen&amp;gs_l=psy-ab.3.1.0i67k1l4j0l6.6695.7914.0.10405.8.8.0.0.0.0.226.1023.0j2j3.5.0....0...1.1.64.psy-ab..3.5.1021...35i39k1j0i3k1j0i131k1.0.rHo0Lwf51vw" target="_blank"&gt;Google Search&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;What are Static Site Generators?&lt;/h3&gt;
+&lt;p&gt;In few words&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Static site generators take content written in a particular format, &lt;a href="https://en.wikipedia.org/wiki/Markdown" target="_blank"&gt;Markdown&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/ReStructuredText" target="_blank"&gt;reStructuredText&lt;/a&gt; and translates it to HTML based on certain rules given in a configuration file. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Some Benefits of Static Site Generators:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Cheap Scaling: Pre-rendered static files can stand the onslaught of traffic if your post makes it to the top of hackernews or reddit very cheaply. No queries are being made.&lt;/li&gt;
+&lt;li&gt;Any format: You can use reStructuredText, Markdown etc. to write your posts.&lt;/li&gt;
+&lt;li&gt;Host Anywhere: Static sites can be hosted easily on github pages, Amazon S3 and even dropbox.&lt;/li&gt;
+&lt;li&gt;Own Everything: You have access to all your posts and all your themes. No company in the middle, just you and your content.&lt;/li&gt;
+&lt;li&gt;Control: Static site generators give you a lot of control over pretty much every aspect of your site through templates and plugins, allowing you to quickly add complex functionality not found in popular web blogging platforms.&lt;/li&gt;
+&lt;li&gt;Update Issues: If you are using wordpress, you have to update your software when a new version comes out; otherwise, you have a security risk. However, one can use the same version of a static blog generator indefinitely.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Advantages of Using Pelican:&lt;/h4&gt;
+&lt;p&gt;Pelican is our chosen Static Site Generator and below are some of it's advantages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plugins: Pelican has a lot of plugins, that allow you to quickly add functionality.&lt;/li&gt;
+&lt;li&gt;Hackable: Extending pelican as well as altering its behaviour is simple.&lt;/li&gt;
+&lt;li&gt;Themes: Pelican has a lot of themes, and you can make your own.&lt;/li&gt;
+&lt;li&gt;Multi-platform: Works well on Windows, OSX and Linux. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Getting Started&lt;/h3&gt;
+&lt;p&gt;There are some basic technologies and concepts you need to know to fully understand how this whole thing works, some of which are;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python, Pip, Virtualenvs&lt;/li&gt;
+&lt;li&gt;Git, Bash&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Installing Pelican&lt;/h4&gt;
+&lt;p&gt;Installation is very simple. It is highly advised that you create a &lt;a href="https://virtualenv.pypa.io/en/stable/" target="_blank"&gt;Virtual Environment&lt;/a&gt; for your python applications, see &lt;a href="http://nosahama.com/blog/articles/2017/python/virtual-environments-in-python" target="_blank"&gt;this post&lt;/a&gt; for more. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You must have a &lt;a href="#" target="_blank"&gt;full python development setup&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Start your virtual environment and navigate to the folder where your site files would be stored.&lt;/li&gt;
+&lt;li&gt;Install Pelican which would also install Markdown, blinker, et al.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pip install pelican
+Collecting pelican
+  Using cached pelican-3.7.1-py2.py3-none-any.whl
+Collecting markdown
+  Downloading Markdown-2.6.9.tar.gz &lt;span class="o"&gt;(&lt;/span&gt;271kB&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="m"&gt;100&lt;/span&gt;% &lt;span class="p"&gt;|&lt;/span&gt;████████████████████████████████&lt;span class="p"&gt;|&lt;/span&gt; 276kB 336kB/s 
+Collecting blinker &lt;span class="o"&gt;(&lt;/span&gt;from pelican&lt;span class="o"&gt;)&lt;/span&gt;
+Collecting unidecode &lt;span class="o"&gt;(&lt;/span&gt;from pelican&lt;span class="o"&gt;)&lt;/span&gt;
+  Downloading Unidecode-0.04.21-py2.py3-none-any.whl &lt;span class="o"&gt;(&lt;/span&gt;228kB&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="m"&gt;100&lt;/span&gt;% &lt;span class="p"&gt;|&lt;/span&gt;████████████████████████████████&lt;span class="p"&gt;|&lt;/span&gt; 235kB 305kB/s 
+.
+.
+.
+Installing collected packages: blinker, unidecode, pytz, six, feedgenerator, pygments, docutils, MarkupSafe, jinja2, python-dateutil, pelican, markdown
+Successfully installed MarkupSafe-1.0 blinker-1.4 docutils-0.14 feedgenerator-1.9 jinja2-2.10 markdown-2.6.9 pelican-3.7.1 pygments-2.2.0 python-dateutil-2.6.1 pytz-2017.3 six-1.11.0 unidecode-0.4.21
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After Pelican and all it's dependencies are installed, you can then advance to starting site generation with pelican. &lt;/p&gt;
+&lt;h4&gt;Basic Setup&lt;/h4&gt;
+&lt;p&gt;To kickstart your development process, enter &lt;code&gt;pelican-quickstart&lt;/code&gt; in your terminal with your virtual environment enabled.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pelican-quickstart
+Welcome to pelican-quickstart v3.5.0.
+
+This script will &lt;span class="nb"&gt;help&lt;/span&gt; you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+&amp;gt; Where &lt;span class="k"&gt;do&lt;/span&gt; you want to create your new web site? &lt;span class="o"&gt;[&lt;/span&gt;.&lt;span class="o"&gt;]&lt;/span&gt;
+&amp;gt; What will be the title of this web site? Site Title
+&amp;gt; Who will be the author of this web site? Captain America
+&amp;gt; What will be the default language of this web site? &lt;span class="o"&gt;[&lt;/span&gt;en&lt;span class="o"&gt;]&lt;/span&gt;
+&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; n
+&amp;gt; Do you want to &lt;span class="nb"&gt;enable&lt;/span&gt; article pagination? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; How many articles per page &lt;span class="k"&gt;do&lt;/span&gt; you want? &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt;
+&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want an auto-reload &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; simpleHTTP script to assist with theme and site development? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using FTP? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using SSH? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using Dropbox? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using S3? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using Rackspace Cloud Files? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&amp;gt; Do you want to upload your website using GitHub Pages? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+Done. Your new project is available at /Users/Nosa/Projects/blog
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can simply leave certain fields blank as their default values (Uppercased values between the parentheses) would suffice. You should now have the following folder structure:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;.
+├── Makefile
+├── content/
+├── develop_server.sh
+├── fabfile.py
+├── output/
+├── pelicanconf.py
+└── publishconf.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Briefly to explain what each file/folder does/contains:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Makefile&lt;/strong&gt;: a file that contains configurations used when running commands with &lt;code&gt;make&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;content&lt;/strong&gt;: a folder that would contain our pages and articles writing in either Markdown or reStructuredText format. This is the folder Pelican looks into when trying to convert our files to HTML&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;develop_server.sh&lt;/strong&gt;: a bash file used by Pelican&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fabfile.py&lt;/strong&gt;: a file used when automating processes through &lt;a href="http://www.fabfile.org/", target="_blank"&gt;Fabric&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;output&lt;/strong&gt;: a folder which would contain the rendered HTML files, this is the folder we are to deploy to our various hosting platforms or to Github Pages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pelicanconf.py&lt;/strong&gt;: a file that holds settings and configurations needed by Pelican during conversion.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;publishconf.py&lt;/strong&gt;: a file used by Pelican during publishing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Creating Articles&lt;/h4&gt;
+&lt;p&gt;We would use Markdown to write our first entry, but you can also use reStructuredText. Change your current directory to the &lt;code&gt;content&lt;/code&gt; directory and create a new file with the markdown extension (.md)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; content
+$ sudo nano first_post.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Enter the following&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Title: My First Post
+Date: 2017-11-14 18:32
+Category: Test
+
+Thanks to Pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;strong&gt;Title&lt;/strong&gt;, &lt;strong&gt;Date&lt;/strong&gt; and &lt;strong&gt;Category&lt;/strong&gt; are post metadata used to provide reusable information about the article being written, there are various other metadata used for posts like; &lt;strong&gt;tags&lt;/strong&gt;, &lt;strong&gt;author&lt;/strong&gt;, &lt;strong&gt;summary&lt;/strong&gt;, which are sometimes specific to the &lt;strong&gt;Theme&lt;/strong&gt; being used and the corresponding configuration files. Every other text beneath the metadata section is the body of the text. &lt;/p&gt;
+&lt;h4&gt;Start a development server&lt;/h4&gt;
+&lt;p&gt;Now run the command for starting a development server&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make devserver
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Browse to &lt;a href="http://localhost:8000" target="_blank"&gt;http://localhost:8000&lt;/a&gt; to see your newly created site.&lt;/p&gt;
+&lt;h4&gt;Using Themes, Plugins and Settings&lt;/h4&gt;
+&lt;p&gt;Pelican settings and choosing a theme/plugin are covered fully in the following articles:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#" target="_blank"&gt;Understanding Pelican Settings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#" target="_blank"&gt;Using Pelican Themes and Plugins&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I personally use the &lt;code&gt;atilla&lt;/code&gt; theme from the &lt;a href="https://github.com/getpelican/pelican-themes" target="_blank"&gt;Pelican Themes Repository&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Writing complex articles&lt;/h4&gt;
+&lt;p&gt;To fully write meaty articles, you need to know how to implement lists, headings, images, bold and italics, etc in markdown and the following &lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank"&gt;&lt;b&gt;post&lt;/b&gt;&lt;/a&gt; would provide all you need to get up to speed with Markdown.&lt;/p&gt;
+&lt;p&gt;This &lt;a href="http://nafiulis.me/making-a-static-blog-with-pelican.html#automation" target="_blank"&gt;blog post&lt;/a&gt; has an awesome script for automating the creation of posts by using command line arguments to specify the Title, then the script automates the inclusion of the various necessary metadata. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Below is a sample script that automates the creation of a post:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We create a python file named &lt;code&gt;create_post.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+
+&lt;span class="n"&gt;TEMPLATE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;title: {title}&lt;/span&gt;
+&lt;span class="s2"&gt;date: {year}-{month}-{day} {hour}:{minute:02d}&lt;/span&gt;
+&lt;span class="s2"&gt;tags:&lt;/span&gt;
+&lt;span class="s2"&gt;category:&lt;/span&gt;
+&lt;span class="s2"&gt;slug: {slug}&lt;/span&gt;
+&lt;span class="s2"&gt;summary:&lt;/span&gt;
+&lt;span class="s2"&gt;status: draft&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;today&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;slug&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;file_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;content/{}_{:0&amp;gt;2}_{:0&amp;gt;2}_{}.md&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;month&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;slug&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;month&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;month&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;hour&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hour&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;minute&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;minute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="n"&gt;slug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;slug&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;File created -&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;create_post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;No title given&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The script above requires a title to be passed as an argument when running the file and it then populates certain metadata based on the title and date. &lt;/p&gt;
+&lt;p&gt;We can then simply create a new file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python create_post.py &lt;span class="s2"&gt;&amp;quot;My First Pelican Site&amp;quot;&lt;/span&gt;
+File created -&amp;gt; content/2014_12_13_my-first-pelican-site.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remember that the &lt;code&gt;content&lt;/code&gt; folder holds the raw files which would then be converted to HTML by Pelican and the &lt;code&gt;output&lt;/code&gt; folder contains the converted HTML files. &lt;/p&gt;
+&lt;h4&gt;Hosting your new site freely on Github&lt;/h4&gt;
+&lt;p&gt;GitHub is a Web-based Git version control repository hosting service. It is mostly used for computer code. It offers all of the distributed version control and source code management functionality of Git as well as adding its own features.&lt;/p&gt;
+&lt;p&gt;In order to get a sitename as &lt;code&gt;http://username.github.io&lt;/code&gt; one needs to &lt;a href="https://help.github.com/articles/create-a-repo/" target="_blank"&gt;create a repository on github&lt;/a&gt; named &lt;code&gt;username.github.io&lt;/code&gt;, set it as public and empty. This is the repository where you would push the content of your &lt;code&gt;output&lt;/code&gt; folder. Once your repository has been created, take note of the &lt;code&gt;remote url&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;You would also need a repository to hold all the files, both the output folder and the content folder and all files involved, as a back up. Most people prefer using &lt;a href="https://git-scm.com/docs/git-submodule" target="_blank"&gt;Git Submodule&lt;/a&gt; since the output folder is contained in the same parent folder as the content folder, so we would need to have a git repository inside a git repository, not so complicated, but beyond the scope of this tutorial.&lt;/p&gt;
+&lt;p&gt;So initialize an empty git repository in both the output folder and it's parent folder&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; output
+$ git init
+$ git remote add origin https://github.com/username/output_repo
+
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; ..
+$ git init
+$ git remote add origin https://github.com/username/full_blog_repo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then push the content of the output folder to the appropriate repository &lt;code&gt;username.github.io&lt;/code&gt;. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git add .
+$ git commit -m &lt;span class="s2"&gt;&amp;quot;ain&amp;#39;t i awesome&amp;quot;&lt;/span&gt;
+$ git push
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remember to also add a &lt;code&gt;.gitignore&lt;/code&gt; file and add &lt;code&gt;*.pyc&lt;/code&gt; and also push the content of the parent folder when you please, this is more of a backup scheme. &lt;/p&gt;
+&lt;p&gt;If all things go well, you should see your newly created site at &lt;strong&gt;http://username.github.io&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;Custom domains&lt;/h4&gt;
+&lt;p&gt;In order to get your own top level domain like I have with nosahama.com, you simply need to add a &lt;code&gt;CNAME&lt;/code&gt; file with your domain in it. The CNAME file must me located inside your output directory and must only have the domain name you intend to use. My CNAME file looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nosahama.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The CNAME file must be included when you are pushing to your github repo.&lt;/p&gt;
+&lt;p&gt;Once this is done, you need to link your domain up with github, follow &lt;a href="http://davidensinger.com/2013/03/setting-the-dns-for-github-pages-on-namecheap/" target="_blank"&gt;this post&lt;/a&gt; to setup a personal domain with github on namecheap, but the tutorial follows principles applicable to other domain companies. &lt;/p&gt;
+&lt;p&gt;Not to make this article more verbose than it already is, i've broken down other aspects of Pelican into various other articles:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#" target="_blank"&gt;Understanding Pelican Settings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#" target="_blank"&gt;Using Pelican Themes and Plugins&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can read more about Pelican at their &lt;a href="http://docs.getpelican.com/en/stable/" target="_blank"&gt;Official Documentation&lt;/a&gt;&lt;/p&gt;</content><category term="pelican"></category><category term="static site generator"></category><category term="github hosting"></category></entry><entry><title>Installing and Using Virtualenv Wrapper</title><link href="http://nosahama.com/blog/articles/2017/python/using-virtualenv-wrapper" rel="alternate"></link><published>2017-11-14T09:36:00+01:00</published><updated>2017-11-14T09:36:00+01:00</updated><author><name>nosahama</name></author><id>tag:nosahama.com,2017-11-14:/blog/articles/2017/python/using-virtualenv-wrapper</id><summary type="html">&lt;p&gt;Isolating Python environments is a very necessary aspect of developing applications with python. From having a specific version of Python being run in a container-like structure called virtual environments to contained installations of various python packages, virtual environments are very important.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Isolating Python environments is a very necessary aspect of developing applications with python. From having a specific version of Python being run in a container-like structure called virtual environments to contained installations of various python packages, virtual environments are very important. &lt;/p&gt;
+&lt;p&gt;There are numerous variations of virtual environments, even python has built in implementations of a virtual environment like; &lt;a href="https://docs.python.org/3/library/venv.html" target="_blank"&gt;venv&lt;/a&gt;, but i do not personally like the idea of having your virtual environment folder and files in the same directory as your  project/application. That's where &lt;a href="https://virtualenvwrapper.readthedocs.io/en/latest/index.html" target="_blank"&gt;virtualenvwrapper&lt;/a&gt; comes in, as the name suggests, it is just a wrapper around &lt;a href="http://pypi.python.org/pypi/virtualenv" target="_blank"&gt;virtualenv&lt;/a&gt; and as such, it provides more commands and extended functionalities around virtualenv, which makes working with virtual environments more pleasant and organized.&lt;/p&gt;
+&lt;h3&gt;Installing virtualenvwrapper&lt;/h3&gt;
+&lt;p&gt;Make sure you have &lt;strong&gt;virtualenv&lt;/strong&gt; installed.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The installation is similar for both macOS and Ubuntu. Install &lt;strong&gt;virtualenvwrapper&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install virtualenvwrapper
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Most people like specifying the folder which holds the created virtualenvs, but i personally leave it to it's default &lt;code&gt;~/.virtualenvs&lt;/code&gt; which is created by default. If you want to change the home for your virtualenvs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/&amp;lt;folder_name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add it to your path or to the end of the &lt;code&gt;.bashrc&lt;/code&gt; file so the virtualenvwrapper commands are loaded&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;source&lt;/span&gt; /usr/local/bin/virtualenvwrapper.sh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;or &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo nano ~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then add &lt;code&gt;. /usr/local/bin/virtualenvwrapper.sh&lt;/code&gt; to the end of the &lt;code&gt;.bashrc&lt;/code&gt; file. &lt;/p&gt;
+&lt;p&gt;Restart you terminal or reload the .bashrc by running &lt;code&gt;. .bashrc&lt;/code&gt; in your home folder.&lt;/p&gt;
+&lt;h3&gt;Virtualenvwrapper Commands&lt;/h3&gt;
+&lt;p&gt;Virtualenvwrapper provides various commands for creating, stopping, switching, virtual environments.&lt;/p&gt;
+&lt;h4&gt;Creating a virtualenv&lt;/h4&gt;
+&lt;p&gt;To create a virtualenv with virtualenvwrapper&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mkvirtualenv nosahama
+
+New python executable in /Users/Nosa/.virtualenvs/nosahama/bin/python
+Installing setuptools, pip, wheel...done.
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/predeactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/postdeactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/preactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/get_env_details
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There is a little trick i use to create an environment and then set it's project folder to the current folder using &lt;code&gt;-a .&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mkvirtualenv nosahama -a .
+
+New python executable in /Users/Nosa/.virtualenvs/nosahama/bin/python
+Installing setuptools, pip, wheel...done.
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/predeactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/postdeactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/preactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/postactivate
+virtualenvwrapper.user_scripts creating /Users/Nosa/.virtualenvs/nosahama/bin/get_env_details
+Setting project &lt;span class="k"&gt;for&lt;/span&gt; nosahama to /Users/Nosa/Projects/nosahama-com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;notice the last line &lt;code&gt;Setting project for nosahama to /Users/Nosa/Projects/nosahama-com&lt;/code&gt;, this sets the current folder as the project folder.&lt;/p&gt;
+&lt;h4&gt;Stopping a virtualenv&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ deactivate
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Switching between virtualenvs&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ workon &amp;lt;virtualenv-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So if we have 3 different virtualenvs; venv1, venv2, venv3, we can switch between them with&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ workon venv1
+&lt;span class="o"&gt;(&lt;/span&gt;venv1&lt;span class="o"&gt;)&lt;/span&gt; $
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ workon venv2
+&lt;span class="o"&gt;(&lt;/span&gt;venv2&lt;span class="o"&gt;)&lt;/span&gt; $
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ workon venv3
+&lt;span class="o"&gt;(&lt;/span&gt;venv3&lt;span class="o"&gt;)&lt;/span&gt; $
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Using Projects&lt;/h3&gt;
+&lt;p&gt;Virtualenvwrapper can also automate the process of creating a project folder and it's corresponding virtualenv. We just have to provide the path to our projects folder in our &lt;code&gt;.bashrc&lt;/code&gt; file before the virtualenvwrapper command. So edit the &lt;code&gt;.bashrc&lt;/code&gt; file and add&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;PROJECT_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/path-to-project-folder&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Creating and Using a Project&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mkproject &amp;lt;project-name&amp;gt;
+$ workon &amp;lt;project-name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For windows users, you can use &lt;a href="https://github.com/davidmarble/virtualenvwrapper-win/" target="_blank"&gt;virtualenvwrapper-win&lt;/a&gt;. You can read more on &lt;a href="http://pypi.python.org/pypi/virtualenv" target="_blank"&gt;virtualenv&lt;/a&gt; and &lt;a href="https://virtualenvwrapper.readthedocs.io/en/latest/index.html" target="_blank"&gt;virtualenvwrapper&lt;/a&gt;.&lt;/p&gt;</content><category term="venv"></category><category term="venvwrapper"></category><category term="python"></category></entry></feed>
